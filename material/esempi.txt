@@ -1,0 +1,19 @@
+colfis 250-300
+
+tavolo 
+telefono
+televisione
+palazzo
+camera 
+compito
+cucina
+
+
+colfis 10-30
+zuppa 
+vagone 
+uscio
+sugo 
+stagno
+addome
+agnello

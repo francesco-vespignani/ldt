@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Maze sentence repetition task</title>
+        <script src="https://unpkg.com/jspsych@7.2.3"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-instructions@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-fullscreen@1.1.1"></script>
+        <script type="text/javascript" src="./stimlist.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css">
+    </head>
+    <body></body>
+<script>
+
+  // start jsPsych
+
+ var jsPsych = initJsPsych({
+    use_webaudio: false,
+    on_finish: function(){
+      jsPsych.data.displayData();
+    }
+  });
+
+
+  timel = [];
+
+  var trial = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: '<p style="font-size:48px; color:green;">BLUE</p>',
+    choices: ['r', 'g', 'b'],
+    prompt: "<p>Is the ink color (r)ed, (g)reen, or (b)lue?</p>"
+};
+
+  timel.push(trial);
+
+  jsPsych.run(timel);
+
+
+</script>
+</html>

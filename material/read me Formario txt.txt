@@ -1,0 +1,5 @@
+INFORMAZIONI contenute:
+
+Campo 1: sequenza di lettere (o di numeri) corrispondente alla forma
+Campo 2: numero intero corrispondente alla frequenza assoluta totale nel corpus della forma
+Campo 3: numero intero corrispondente al numero di caratteri della forma

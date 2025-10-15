@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Maze sentence repetition task</title>
+        <script src="https://unpkg.com/jspsych@7.2.3"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-instructions@1.1.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-fullscreen@1.1.1"></script>
+        <script type="text/javascript" src="./stimlist.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css">
+    </head>
+    <body></body>
+<script>
+    //  constants for instructions and practice
+    const instructions = {
+      type: jsPsychInstructions,
+      button_label_previous: 'Indietro',
+      button_label_next: "Avanti",
+      pages: [
+        '<p> ' +
+        '<i>Titolo dello Studio:</i> Decisione lessicale'+
+        '<p> ',
+        '<p> ' +
+        'Premi J se vedi una parola e F se vedi una sequenza di lettere casuale.'+
+        '<p> ',
+      ],
+      show_clickable_nav: true,
+      data: {type: 'break', log_type: 'practice'},
+    }
+
+  const enter_fullscreen = {
+    type: jsPsychFullscreen,
+    message: '<p> Premendo il pulsante continua l\'esperimento passerà in modalità schermo intero. </p>',
+    button_label: 'Continua', 
+    fullscreen_mode: true
+  }
+
+  const exit_fullscreen = {
+    type: jsPsychFullscreen,
+    fullscreen_mode: false,
+    delay_after: 0,
+  }
+
+  function screenmessage(message) {
+    const mess = {
+        type: jsPsychHtmlKeyboardResponse,
+        choices: [' '],
+        stimulus: " <p>"+ message + 
+          "<br>" +
+          "Premi spazio</p>",
+        data: {type: 'break'},
+    }
+    return mess
+  }
+
+  var timel =[];
+
+
+  // start jsPsych
+
+  var jsPsych = initJsPsych({
+    use_webaudio: false,
+    on_finish: function(){
+      //jsPsych.data.displayData();
+        jsPsych.data.get().filter({type:'ldt'}).ignore('log').ignore('internal_node_id').ignore('log_type').ignore('trial_type').ignore('trial_index').ignore('type').ignore("time_elapsed").ignore("stimulus").localSave('csv', 'latsdata.csv'); 
+    }
+  });
+
+  
+  timel.push(instructions);
+  timel.push(enter_fullscreen);
+
+  // load material  
+  // console.log(stim)
+
+  var trial;
+   
+  stims = jsPsych.randomization.shuffle(stims) 
+
+  for (let i = 0; i < stims.length; i++) {
+    trial = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: '<p style="font-size:48px;">'+stims[i].string+'</p>',
+        choices: ['F','J'],
+        data: {
+          'type': 'ldt',
+          'string': stims[i].string,
+          'cond': stims[i].cond,
+          'item': stims[i].item, 
+        }
+    };
+    timel.push(trial);
+  }
+
+  timel.push(screenmessage('Hai finito'));
+  timel.push(exit_fullscreen);
+
+  jsPsych.run(timel);
+
+
+</script>
+</html>
