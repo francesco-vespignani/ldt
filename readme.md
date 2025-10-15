@@ -1,14 +1,3 @@
----
-title: "jsPsych tutorial psycholinguistics"
-author: "Francesco Vespignani"
-date: "2025-10-13"
-output:
-  html_document:
-    toc: true
-lang: "en-US"
----
-
-
 # Tutorial for programming a simple online psycholinguistics experiment
 
 You will need to do some programming,  working with standard format of text files.
