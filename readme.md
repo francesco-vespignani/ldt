@@ -127,3 +127,4 @@ See [ldt1b.html](program/ldt1b.html)  which implements this and uses jsPsych fun
 
 # Create the linguistic material
 
+[Here](material/tools.md)  you find some link to corpora resources usefull for getting frequency of use of words and other properties. 
